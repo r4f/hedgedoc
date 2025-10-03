@@ -34,6 +34,7 @@ import { KnexLoggerService } from './logger/knex-logger.service';
 import { LoggerModule } from './logger/logger.module';
 import { MediaRedirectModule } from './media-redirect/media-redirect.module';
 import { MediaModule } from './media/media.module';
+import { MessageModule } from './message/message.module';
 import { MonitoringModule } from './monitoring/monitoring.module';
 import { PermissionsModule } from './permissions/permissions.module';
 import { WebsocketModule } from './realtime/websocket/websocket.module';
@@ -111,6 +112,7 @@ const routes: Routes = [
     AuthModule,
     SessionModule,
     MediaRedirectModule,
+    MessageModule,
   ],
   controllers: [],
   providers: [FrontendConfigService],
