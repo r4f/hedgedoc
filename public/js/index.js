@@ -1226,6 +1226,11 @@ ui.toolbar.download.rawhtml.click(function (e) {
   e.stopPropagation()
   exportToRawHTML(ui.area.markdown)
 })
+// PDF download
+ui.toolbar.download.pdf.click(function (e) {
+  // TODO: Add PDF exporter here.
+  console.debug("PDF-Export is not yet implemented.")
+})
 // export to dropbox
 ui.toolbar.export.dropbox.click(function (event) {
   event.preventDefault()
