@@ -1237,7 +1237,11 @@ ui.toolbar.download.pdf.click(function (e) {
   ui.spinner.show()
 
   // Make request to external PDF service
-  fetch('http://serve-md-as-pdf:5000/download/' + encodeURIComponent(document_link))
+  console.log(encodeURIComponent(document_link))
+  console.log(document_link)
+  console.log(noteurl)
+  console.log(noteid)
+  fetch('http://serve-md-as-pdf:5000/download/' + noteid)
     .then(response => {
       if (!response.ok) {
         throw new Error('PDF generation failed')
