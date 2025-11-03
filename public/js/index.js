@@ -1232,12 +1232,12 @@ ui.toolbar.download.pdf.click(function (e) {
   e.stopPropagation()
   const document_link = noteurl + '/download'
   const filename = renderFilename(ui.area.markdown) + '.pdf'
-  
+
   // Show loading spinner while generating PDF
   ui.spinner.show()
-  
+
   // Make request to external PDF service
-  fetch('http://serve-md-as-pdf/download/' + encodeURIComponent(document_link))
+  fetch('http://serve-md-as-pdf:5000/download/' + encodeURIComponent(document_link))
     .then(response => {
       if (!response.ok) {
         throw new Error('PDF generation failed')
