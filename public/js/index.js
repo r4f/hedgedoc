@@ -1228,8 +1228,38 @@ ui.toolbar.download.rawhtml.click(function (e) {
 })
 // PDF download
 ui.toolbar.download.pdf.click(function (e) {
-  // TODO: Add PDF exporter here.
-  console.debug("PDF-Export is not yet implemented.")
+  e.preventDefault()
+  e.stopPropagation()
+  const document_link = noteurl + '/download'
+  const filename = renderFilename(ui.area.markdown) + '.pdf'
+  
+  // Show loading spinner while generating PDF
+  ui.spinner.show()
+  
+  // Make request to external PDF service
+  fetch('http://serve-md-as-pdf/download/' + encodeURIComponent(document_link))
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('PDF generation failed')
+      }
+      return response.blob()
+    })
+    .then(blob => {
+      saveAs(blob, filename, true)
+    })
+    .catch(err => {
+      console.error('PDF export error:', err)
+      showMessageModal(
+        '<i class="fa fa-file-pdf-o"></i> Export PDF',
+        'Failed to generate PDF :(',
+        '',
+        err.message,
+        false
+      )
+    })
+    .finally(() => {
+      ui.spinner.hide()
+    })
 })
 // export to dropbox
 ui.toolbar.export.dropbox.click(function (event) {
